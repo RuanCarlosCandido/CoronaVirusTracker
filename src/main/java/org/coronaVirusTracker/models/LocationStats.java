@@ -32,7 +32,7 @@ public class LocationStats {
 
 	@Override
 	public String toString() {
-		return "state=" + state + ", country=" + country + ", latestTotalCases=" + latestTotalCases
+		return "State=" + state + ", country=" + country + ", latestTotalCases=" + latestTotalCases
 				+ "]";
 	}
 
