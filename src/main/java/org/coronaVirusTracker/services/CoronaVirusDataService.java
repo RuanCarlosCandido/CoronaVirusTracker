@@ -28,27 +28,24 @@ public class CoronaVirusDataService {
 	public void fecthVirusData() throws IOException {
 
 		List<LocationStats> newStats = new ArrayList<LocationStats>();
-		RestTemplate restTemplate 	 = new RestTemplate();
-		String response 			 = restTemplate.getForObject(VIRUS_DATA_URL, String.class);
-		StringReader csvReader       = new StringReader(response);
-		Iterable<CSVRecord> records  = null;
-		records  = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvReader);
+		RestTemplate restTemplate = new RestTemplate();
+		String response = restTemplate.getForObject(VIRUS_DATA_URL, String.class);
+		StringReader csvReader = new StringReader(response);
+		Iterable<CSVRecord> records = null;
+		records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvReader);
 
 		for(CSVRecord record : records) {
 			LocationStats locSta = new LocationStats();
-			locSta.setState	 		  				   (record.get("Province/State"));
-			locSta.setCountry		  				   (record.get("Country/Region"));
+			locSta.setState(record.get("Province/State"));
+			locSta.setCountry(record.get("Country/Region"));
 			locSta.setLatestTotalCases(Integer.parseInt(record.get(record.size() - 1)));
 //			System.out.println(locSta);
 			newStats.add(locSta);
 		}
 		allStats = newStats;
-
 	}
 
 	public static List<LocationStats> getAllStats() {
 		return allStats;
 	}
-
-
 }
