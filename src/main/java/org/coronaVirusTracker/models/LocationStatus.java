@@ -1,7 +1,11 @@
 package org.coronaVirusTracker.models;
 
-public class LocationStats {
+import java.io.Serializable;
 
+public class LocationStatus implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private String state;
 	private String country;
 	private int latestTotalCases;
