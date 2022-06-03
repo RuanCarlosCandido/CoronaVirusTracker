@@ -23,7 +23,7 @@ public class HomeController {
 	CoronaVirusDataService coronaVirusDataService;
 	
 	@Operation(summary = "List all Locations Status")
-	@GetMapping("/")
+	@GetMapping("/status")
 	public String home(Model model) throws IOException {
 		LOGGER.info("retrieved data: " + coronaVirusDataService.getAllStats().toString());
 		model.addAttribute("locationStats",coronaVirusDataService.getAllStats());
