@@ -29,7 +29,7 @@ class IntegrationTest {
 	
 	@Test
 	void get_data_should_sucess() throws Exception {
-		mockMvc.perform(get("/")).andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(get("/status")).andExpect(status().isOk()).andDo(print());
 	}
 
 }
