@@ -1,31 +1,56 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.1</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
+
+	<!-- METADATA -->
 	<groupId>org</groupId>
 	<artifactId>coronaVirusTracker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<description>Building a Coronavirus tracker app  with Spring Boot and Java</description>
 	<name>coronaVirusTracker</name>
-	<description>Building a Coronavirus tracker app  with Spring Boot and Java - Java Brains Tutorial&lt;/description&gt;</description>
+
+	<!-- PARENT -->
+	<parent>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
+		<!-- Managed Dependencies (728) -->
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<!-- most recent compatible version at this moment, the version 2.7.0 is breaking-->
+		<version>2.6.8</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
+	<!-- CONFIGURATION -->
 	<properties>
-		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+		<junit.jupiter.version>5.8.1</junit.jupiter.version>
 		<junit.platform.version>1.8.1</junit.platform.version>
+		<!-- most recent compatible version at this moment, the version 3.0.0-M1 is breaking-->
+		<spring-boot-admin-starter-server.version>2.6.7</spring-boot-admin-starter-server.version>
+		<spring-boot-admin-starter-client.version>${spring-boot-admin-starter-server.version}</spring-boot-admin-starter-client.version>
+		<springdoc-openapi-ui.version>1.6.9</springdoc-openapi-ui.version>
+		<springdoc-openapi-webmvc-core.version>${springdoc-openapi-ui.version}</springdoc-openapi-webmvc-core.version>
 	</properties>
+
 	<dependencies>
+
+		<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
+		<!-- <version>2.6.8</version> from Starter Parent-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+		<!-- <version>2.6.8</version> from Starter Parent-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
+		<!-- <version>2.6.8</version> from Starter Parent-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -33,48 +58,59 @@
 			<optional>true</optional>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-csv</artifactId>
-			<version>1.9.0</version>
-		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+		<!-- <version>2.6.8</version> from Starter Parent-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
+		<!-- <version>2.6.8</version> from Starter Parent-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.9.0</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-webmvc-core -->
 		<!-- Swagger(OpenAPI) documentation-->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-webmvc-core</artifactId>
-			<version>1.5.7</version>
+			<version>${springdoc-openapi-webmvc-core.version}</version>
 		</dependency>
+
 		<!-- Swagger(OpenAPI) graphical interface-->
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.5.7</version>
+			<version>${springdoc-openapi-ui.version}</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-starter-server -->
 		<!-- Spring Boot Admin-->
 		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-server</artifactId>
-			<version>2.5.1</version>
+			<version>${spring-boot-admin-starter-server.version}</version>
 		</dependency>
 
 		<!-- register  Spring Boot application as a client -->
+		<!-- https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-starter-client -->
 		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-client</artifactId>
-			<version>2.5.1</version><!-- depends on spring boot parent version used -->
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+			<version>${spring-boot-admin-starter-client.version}</version> <!-- depends on spring boot parent version used -->
 		</dependency>
 
 	</dependencies>
@@ -84,21 +120,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				 <executions>
-                			<execution>
-                    				<goals>
-                        				<goal>build-info</goal>
-                    				</goals>
-                			</execution>
-            			</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
