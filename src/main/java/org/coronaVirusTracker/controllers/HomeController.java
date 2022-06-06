@@ -25,7 +25,7 @@ public class HomeController {
 	@Operation(summary = "List all Locations Status")
 	@GetMapping("/status")
 	public String home(Model model) throws IOException {
-		LOGGER.info("retrieving data via endpoint() ");
+		LOGGER.info("retrieving data via endpoint(/status) ");
 		LOGGER.info("retrieved data: " + coronaVirusDataService.getAllStats().toString());
 		model.addAttribute("locationStats",coronaVirusDataService.getAllStats());
 		return "home";

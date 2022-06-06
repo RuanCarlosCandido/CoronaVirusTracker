@@ -1,1 +1,1 @@
-Adjust Pointing in production code to make the applications appears in spring boot admin
+Verify why springboot admin is not find the instances in Heroku when deploying (only finds when restart all dynos)

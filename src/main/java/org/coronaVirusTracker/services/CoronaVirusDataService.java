@@ -12,6 +12,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.coronaVirusTracker.models.LocationStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -19,13 +20,21 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class CoronaVirusDataService {
 
+	private static final String KEY_COUNTRY = "Country/Region";
+
+	private static final String KEY_STATE = "Province/State";
+
 	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
-	private static String VIRUS_DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
+	// schedule configuration (ss mm hh dd mm yy), cron = "30 * * * * * is
+	// configured to run every minute
+	private static final String SCHEDULING_INTERVAL_EVERY_MINUTE = "30 * * * * *";
+
+	@Value("${virus.data.url}")
+	private String VIRUS_DATA_URL;
 
 	@PostConstruct
-	@Scheduled(cron = "30 * * * * *") // schedule configuration (ss mm hh dd mm yy), cron = "30 * * * * * is
-										// configured to run every minute
+	@Scheduled(cron = SCHEDULING_INTERVAL_EVERY_MINUTE)
 	public List<LocationStatus> fecthVirusData() throws IOException {
 		LOGGER.info("Request data from url: " + VIRUS_DATA_URL);
 
@@ -33,7 +42,12 @@ public class CoronaVirusDataService {
 		RestTemplate restTemplate = new RestTemplate();
 		String response = restTemplate.getForObject(VIRUS_DATA_URL, String.class);
 		StringReader csvReader = new StringReader(response);
-		Iterable<CSVRecord> records = Builder.create().setHeader().setSkipHeaderRecord(true).build().parse(csvReader);
+		Iterable<CSVRecord> records = Builder
+				.create()
+				.setHeader()
+				.setSkipHeaderRecord(true)
+				.build()
+				.parse(csvReader);
 		buildStatusList(newStats, records);
 		LOGGER.info("response: " + newStats);
 		return newStats;
@@ -48,8 +62,8 @@ public class CoronaVirusDataService {
 			throws NumberFormatException {
 		for (CSVRecord record : records) {
 			LocationStatus locSta = new LocationStatus();
-			locSta.setState(record.get("Province/State"));
-			locSta.setCountry(record.get("Country/Region"));
+			locSta.setState(record.get(KEY_STATE));
+			locSta.setCountry(record.get(KEY_COUNTRY));
 			locSta.setLatestTotalCases(Integer.parseInt(record.get(record.size() - 1)));
 			newStats.add(locSta);
 		}
