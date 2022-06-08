@@ -23,6 +23,7 @@ public class HomeController {
 	@Autowired
 	CoronaVirusDataService coronaVirusDataService;
 
+	//Model is used to map attributes in 'Thymeleaf' framework
 	@Operation(summary = "List all Locations Status")
 	@GetMapping("/status")
 	public String home(Model model) throws IOException {

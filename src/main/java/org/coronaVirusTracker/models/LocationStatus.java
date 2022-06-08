@@ -2,10 +2,10 @@ package org.coronaVirusTracker.models;
 
 import java.io.Serializable;
 
-public class LocationStatus implements Serializable{
+public class LocationStatus implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private String state;
 	private String country;
 	private Integer latestTotalCases;
@@ -36,8 +36,8 @@ public class LocationStatus implements Serializable{
 
 	@Override
 	public String toString() {
-		return "State=" + state + ", country=" + country + ", latestTotalCases=" + latestTotalCases
-				+ "]";
+		return (state != null && !state.isEmpty() ? "State: " + state + ", " : "") + (country != null ? "Country: " + country + ", " : "")
+				+ (latestTotalCases != null ? "Latest Total Cases: " + latestTotalCases : "");
 	}
 
 }

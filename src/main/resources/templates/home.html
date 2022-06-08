@@ -1,40 +1,80 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://thymeleaf.org">
-	
-	<head>
-		<title>CoronaVirus Tracker Application</title>
-		<meta http-equiv="Content-Type"	content="text/html; charset=utf-8" />
-	</head>
-	<body>
-		<p th:text="${t}"></p>
 
-		<table>
-			<tr>
-				<th>State</th>
-				<th>Country</th>
-				<th>Total Cases reported</th>
-			</tr>
- 			<tr th:each="locationStat : ${locationStats}">
- 				<td th:text="${locationStat.state}"></td>
-				<td th:text="${locationStat.country}"></td>
-				<td th:text="${locationStat.latestTotalCases}"></td>
+<head>
+<title>CoronaVirus Tracker Application</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
 
-			</tr>
+<!-- CSS -->
+<style>
+table, th, td {
+	/* ADD Borders  */
+	border: 1px solid black;
+}
 
-		</table>
-		
-		<table>
-			<tr>
-				<th>Most Cases</th>		
-				<th>Less Cases</th>	
-			</tr>
- 			<tr>
- 				<td th:text="${mostCases}"></td>
- 				<td th:text="${lessCases}"></td>
-			</tr>
+div.center {
+	text-align: center;
+}
 
-		</table>
+div.small {
+	font-size: 12px !important;
+}
 
-	</body>
+div.opacity {
+	opacity: 0.90;
+}
+</style>
+
+<body>
+
+	<div>
+		<h1>Analytics</h1>
+	</div>
+
+	<table style="width: 100%">
+		<tr>
+			<th>Most Cases</th>
+			<th>Less Cases</th>
+		</tr>
+		<tr>
+			<td th:text="${mostCases}"></td>
+			<td th:text="${lessCases}"></td>
+		</tr>
+
+	</table>
+
+	<div>
+		<h1>Country Data</h1>
+	</div>
+
+
+	<table style="width: 100%">
+		<tr>
+			<!-- headers -->
+			<th>Country</th>
+			<th>State</th>
+			<th>Total Cases reported</th>
+		</tr>
+
+		<tr th:each="locationStat : ${locationStats}">
+			<td th:text="${locationStat.country}"></td>
+			<td th:text="${locationStat.state}"></td>
+			<td th:text="${locationStat.latestTotalCases}"></td>
+		</tr>
+
+
+	</table>
+
+
+	<p></p>
+	<div class="center small opacity">
+		Service developed by Ruan Candido <br> <br> <a
+			href="https://github.com/RuanCarlosCandido/corona-virus-tracker">Github
+			Repository</a> <br> <br> <a
+			href="https://www.linkedin.com/in/ruan-candido/">Linkedin</a>
+	</div>
+
+</body>
 </html>
