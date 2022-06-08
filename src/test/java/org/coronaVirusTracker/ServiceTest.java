@@ -3,9 +3,8 @@ package org.coronaVirusTracker;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
-import org.coronaVirusTracker.models.LocationStatus;
 import org.coronaVirusTracker.services.CoronaVirusDataService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +19,7 @@ public class ServiceTest {
 	
 	@Test
 	void get_data_should_sucess() throws Exception {
-		when(coronaVirusDataService.getAllStats()).thenReturn(new ArrayList<LocationStatus>());
+		when(coronaVirusDataService.getAllStats()).thenReturn(new HashMap<String,Object>());
 		assertThat(coronaVirusDataService.getAllStats()).isNotNull();	
 	}
 

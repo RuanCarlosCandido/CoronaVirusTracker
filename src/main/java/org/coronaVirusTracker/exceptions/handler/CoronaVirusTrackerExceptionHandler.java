@@ -17,30 +17,41 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Handler of any kind of exception that occurs during the process
+ * @author ruan.lima
+ *
+ */
 @ControllerAdvice
 @RestController
 public class CoronaVirusTrackerExceptionHandler extends ResponseEntityExceptionHandler {
 
+	HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+	ObjectMapper mapper = new ObjectMapper();
+	
 	@SuppressWarnings("unchecked")
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception ex, WebRequest request) {
 		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
 				request.getDescription(false));
+		
 		logger.debug("Handling " + ex.getMessage());
 		logger.debug("Type " + ex.getClass());
-		ObjectMapper mapper = new ObjectMapper();
+		
+		
 		HashMap<String, Object> body = new HashMap<>();
-		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+				
 		try {
 			if (ex instanceof HttpClientErrorException) {
 				HttpClientErrorException httpEx = (HttpClientErrorException) ex;
-				logger.debug("status " + httpEx.getStatusCode().value());
 				status = httpEx.getStatusCode();
+				logger.debug("status " + status.value());				
 				body = mapper.readValue(httpEx.getResponseBodyAsString(), HashMap.class);
 
 			} else if (ex instanceof HttpServerErrorException) {
 				HttpServerErrorException httpEx = (HttpServerErrorException) ex;
 				status = httpEx.getStatusCode();
+				logger.debug("status " + status.value());
 				body = mapper.readValue(httpEx.getResponseBodyAsString(), HashMap.class);
 			}
 		} catch (IOException e) {

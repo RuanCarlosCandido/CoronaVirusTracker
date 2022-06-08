@@ -10,8 +10,8 @@ import io.swagger.v3.oas.models.info.License;
  * Class for configuration of the swagger framework
  * 
  * @author ruan
- * @see <a href=http://localhost:8100/swagger-ui.html>Swagger Gui</a>
- * @see <a href=http://localhost:8100/v3/api-docs>Swagger App Info</a>
+ * @see <a href=http://localhost:8080/swagger-ui.html>Swagger Gui</a>
+ * @see <a href=http://localhost:8080/v3/api-docs>Swagger App Info</a>
  */
 @OpenAPIDefinition(info = @Info(title = "Corona Virus Tracker API", version = "v1", description = "Documentation of Corona Virus Tracker API"))
 public class SwaggerConfiguration {

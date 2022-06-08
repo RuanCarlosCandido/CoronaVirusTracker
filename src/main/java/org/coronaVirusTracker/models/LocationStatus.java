@@ -8,7 +8,7 @@ public class LocationStatus implements Serializable{
 	
 	private String state;
 	private String country;
-	private int latestTotalCases;
+	private Integer latestTotalCases;
 
 	public String getState() {
 		return state;
@@ -26,11 +26,11 @@ public class LocationStatus implements Serializable{
 		this.country = country;
 	}
 
-	public int getLatestTotalCases() {
+	public Integer getLatestTotalCases() {
 		return latestTotalCases;
 	}
 
-	public void setLatestTotalCases(int latestTotalCases) {
+	public void setLatestTotalCases(Integer latestTotalCases) {
 		this.latestTotalCases = latestTotalCases;
 	}
 
