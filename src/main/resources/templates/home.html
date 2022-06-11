@@ -3,6 +3,13 @@
 <html xmlns:th="http://thymeleaf.org">
 
 <head>
+
+<script>
+	if (window.location.protocol === "http:"
+			&& window.location.hostname === "my-first-deploy-123.herokuapp.com") {
+		window.location.href = window.location.href.replace("http:", "https:");
+	}
+</script>
 <title>CoronaVirus Tracker Application</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
@@ -28,6 +35,29 @@ div.opacity {
 </style>
 
 <body>
+
+
+	<div class="titlepage">
+		<div>
+			<div>
+				<h1 class="title">
+					<span>CoronaVirus Tracker</span>
+				</h1>
+			</div>
+			<div>
+				<div class="resume">A simple application that aims to present
+					an approximation of the number of total cases of corona-virus in
+					each country in the world.</div>
+			</div>
+		</div>
+		<div>
+			<p class="Apresentation">Made by Ruan Candido</p>
+			<a href="https://github.com/RuanCarlosCandido/corona-virus-tracker">Github Repository</a> <br> 
+			<a href="https://www.linkedin.com/in/ruan-candido/">Linkedin</a>
+		</div>
+		<hr>
+	</div>
+
 
 	<div>
 		<h1>Analytics</h1>
@@ -66,15 +96,6 @@ div.opacity {
 
 
 	</table>
-
-
-	<p></p>
-	<div class="center small opacity">
-		Service developed by Ruan Candido <br> <br> <a
-			href="https://github.com/RuanCarlosCandido/corona-virus-tracker">Github
-			Repository</a> <br> <br> <a
-			href="https://www.linkedin.com/in/ruan-candido/">Linkedin</a>
-	</div>
 
 </body>
 </html>
