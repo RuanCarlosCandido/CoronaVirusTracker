@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.commons.csv.CSVFormat.Builder;
 import org.apache.commons.csv.CSVRecord;
 import org.coronaVirusTracker.models.LocationStatus;
@@ -36,7 +34,7 @@ public class CoronaVirusDataService {
 	@Value("${virus.data.url}")
 	private String VIRUS_DATA_URL;
 
-	@PostConstruct
+//	@PostConstruct
 	@Scheduled(cron = SCHEDULING_INTERVAL_EVERY_MINUTE)
 	public Map<String, Object> fecthVirusData() throws IOException {
 		LOGGER.info("Request data from url: " + VIRUS_DATA_URL);
